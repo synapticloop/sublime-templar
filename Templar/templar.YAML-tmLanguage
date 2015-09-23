@@ -1,0 +1,12 @@
+# [PackageDev] target_format: plist, ext: tmLanguage
+---
+name: Templar
+scopeName: text.templar
+fileTypes: [ "templar" ]
+uuid: 38993ba5-b49e-417e-995b-1a3d6af90f96
+
+patterns:
+- name: "keyword.operator.templar"
+  match: \b(delete|in|instanceof|new|typeof|with)\b
+- name: meta.brace.curly.templer
+  match: '\{|\}'

@@ -1,0 +1,86 @@
+{ 
+	"name": "Templar",
+	"scopeName": "text.templar",
+	"fileTypes": ["templar"],
+	"patterns": [
+		{ 
+			"name": "constant.character.templar",
+			"match": "\\{(\\\\n|\\\\t|nl|tab)\\}"
+		},
+		{ 
+			"name": "constant.character.templar",
+			"match": "\\{\\{"
+		},
+		{ 
+			"name": "entity.name.function.templar",
+			"begin": "\\{import ",
+			"patterns": [
+				{ "include": "$self" },
+				{
+					"name": "string.quoted.double",
+					"match": "[^\\}]"
+				}
+			],
+			"end": "\\}"
+		},
+		{ 
+			"name": "entity.name.function.templar",
+			"match": "\\{(loop|set) (.*?) as (.*?)\\}",
+			"captures": {
+				"2": { "name": "keyword.control.templar" },
+				"3": { "name": "keyword.control.templar" }
+			}
+		},
+		{ 
+			"name": "entity.name.function.templar",
+			"begin": "\\{fn:",
+			"patterns": [
+				{ "include": "$self" },
+				{
+					"name": "string.quoted.double",
+					"match": "(.*)\\["
+				},
+				{
+					"name": "keyword.control.templar",
+					"match": "[^\\]]"
+				},
+				{
+					"name": "string.quoted.double",
+					"match": "\\]"
+				}
+			],
+			"end": "\\}"
+		},
+		{ 
+			"name": "entity.name.function.templar",
+			"begin": "\\{(if |else|endif|dumpcontext|endloop)",
+			"patterns": [
+				{ "include": "$self" },
+				{
+					"name": "string.quoted.double",
+					"match": "(.*)\\["
+				},
+				{
+					"name": "keyword.control.templar",
+					"match": "[^\\]]"
+				},
+				{
+					"name": "string.quoted.double",
+					"match": "\\]"
+				}
+			],
+			"end": "\\}"
+		},
+		{ 
+			"name": "comment.block.documentation.templar",
+			"begin": "\\{--",
+			"end": "\\}"
+		},
+		{
+			"name": "keyword.control.templar",
+			"begin": "\\{",
+			"end": "\\}"
+		}
+	],
+	"uuid": "ca03e751-04ef-4330-9a6b-9b99aae1c418"
+}
